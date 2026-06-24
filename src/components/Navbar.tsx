@@ -7,7 +7,7 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 const NAV_LINKS = [
   { href: '#home', label: 'HOME' },
   { href: '#about', label: 'ABOUT' },
-  { href: '#gallery', label: 'GALLERY' },
+  { href: '#gallery', label: 'EVENTS' },
   { href: '#stats', label: 'STATS' },
   { href: '#contact', label: 'CONTACT' },
 ]
