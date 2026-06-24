@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange: #FF6B00;
+  --orange-glow: rgba(255, 107, 0, 0.4);
+  --dark: #0a0a0a;
+  --dark-mid: #111111;
+  --dark-card: #1a1a1a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--dark);
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 3px; }
+
+/* Orange glow utility */
+.glow-orange {
+  text-shadow: 0 0 20px var(--orange-glow), 0 0 40px var(--orange-glow);
+}
+
+.glow-box {
+  box-shadow: 0 0 20px var(--orange-glow), 0 0 40px rgba(255,107,0,0.2);
+}
+
+/* Typing animation */
+@keyframes typing {
+  0% { width: 0; opacity: 1; }
+  45% { width: 100%; opacity: 1; }
+  55% { width: 100%; opacity: 1; }
+  95% { width: 0; opacity: 1; }
+  100% { width: 0; opacity: 1; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #FF6B00; }
+}
+
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #FF6B00;
+  animation: typing 4s steps(25) infinite, blink-caret 0.75s step-end infinite;
+  display: inline-block;
+}
+
+/* Rotate skills */
+@keyframes rotateSkillsUp {
+  0% { transform: translateY(0); opacity: 1; }
+  25% { transform: translateY(-100%); opacity: 0; }
+  26% { transform: translateY(100%); opacity: 0; }
+  50% { transform: translateY(0); opacity: 1; }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+.float-anim {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Particle dots */
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* Count up animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide in from sides */
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Orange border gradient */
+.orange-border {
+  border: 1px solid rgba(255, 107, 0, 0.3);
+}
+
+.orange-border-glow {
+  border: 1px solid #FF6B00;
+  box-shadow: 0 0 15px rgba(255,107,0,0.3), inset 0 0 15px rgba(255,107,0,0.05);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #FF6B00, transparent);
+}
+
+/* 3D text effect */
+.text-3d {
+  text-shadow: 
+    1px 1px 0 #cc5500,
+    2px 2px 0 #aa4400,
+    3px 3px 0 #883300,
+    4px 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Noise overlay for texture */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.05;
+}
+
+/* Custom swiper styles */
+.gallery-swiper .swiper-pagination-bullet {
+  background: #FF6B00 !important;
+  opacity: 0.5;
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  transform: scale(1.3);
+}
+
+/* QR code container */
+.qr-container {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Skill tag */
+.skill-tag {
+  background: rgba(255,107,0,0.1);
+  border: 1px solid rgba(255,107,0,0.3);
+  color: #FF6B00;
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Social icon hover */
+.social-icon-btn {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,107,0,0.1);
+  transform: scale(0);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.social-icon-btn:hover::before {
+  transform: scale(1);
+}
+
+.social-icon-btn:hover {
+  border-color: #FF6B00 !important;
+  color: #FF6B00 !important;
+  box-shadow: 0 0 20px rgba(255,107,0,0.3);
+  transform: translateY(-4px);
+}
