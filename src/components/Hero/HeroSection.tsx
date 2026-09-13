@@ -1,57 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const DJ_NAME = 'DJ KAIZO'
-const SKILLS = [
-  'WEDDING SPECIALIST',
-  'LIVE MIXING EXPERT',
-  'CROWD CONTROLLER',
-  'BASS DROP MASTER',
-  'EVENT ARCHITECT',
-  'SOUND DESIGNER',
-]
 
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
-  const [currentSkill, setCurrentSkill] = useState(0)
-  const [displayText, setDisplayText] = useState('')
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [charIndex, setCharIndex] = useState(0)
 
-  // Typing effect for DJ name
-  useEffect(() => {
-    const skill = SKILLS[currentSkill]
-    const speed = isDeleting ? 50 : 100
 
-    if (!isDeleting && charIndex < skill.length) {
-      const t = setTimeout(() => {
-        setDisplayText(skill.slice(0, charIndex + 1))
-        setCharIndex(c => c + 1)
-      }, speed)
-      return () => clearTimeout(t)
-    }
-
-    if (!isDeleting && charIndex === skill.length) {
-      const t = setTimeout(() => setIsDeleting(true), 2000)
-      return () => clearTimeout(t)
-    }
-
-    if (isDeleting && charIndex > 0) {
-      const t = setTimeout(() => {
-        setDisplayText(skill.slice(0, charIndex - 1))
-        setCharIndex(c => c - 1)
-      }, speed)
-      return () => clearTimeout(t)
-    }
-
-    if (isDeleting && charIndex === 0) {
-      setIsDeleting(false)
-      setCurrentSkill(s => (s + 1) % SKILLS.length)
-    }
-  }, [charIndex, isDeleting, currentSkill])
 
   return (
     <section id="home" className="relative w-full h-screen min-h-screen overflow-hidden">
@@ -149,38 +107,7 @@ export default function HeroSection() {
             </h1>
           </motion.div>
 
-          {/* Typing skills subtitle */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mb-8"
-          >
-            <div
-              className="flex items-center gap-2"
-              style={{ height: '2.5rem' }}
-            >
-              <span
-                className="text-white/40 text-sm tracking-widest"
-                style={{ fontFamily: 'Share Tech Mono, monospace' }}
-              >
-                ▶
-              </span>
-              <span
-                className="text-lg md:text-2xl tracking-[4px] uppercase border-r-2 border-orange-500 pr-1"
-                style={{
-                  fontFamily: 'Share Tech Mono, monospace',
-                  color: '#ffffff',
-                  minWidth: '320px',
-                  display: 'inline-block',
-                  animation: 'blink-caret 0.75s step-end infinite',
-                }}
-              >
-                {displayText}
-                <span className="animate-pulse" style={{ color: '#FF6B00' }}>_</span>
-              </span>
-            </div>
-          </motion.div>
+
 
           {/* Skill badges */}
           <motion.div

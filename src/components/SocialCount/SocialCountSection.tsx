@@ -1,102 +1,17 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-interface StatItem {
-  count: number
-  suffix: string
-  label: string
-}
-
-const STATS: StatItem[] = [
-  { count: 100, suffix: '+', label: 'EVENTS PERFORMED' },
-  { count: 5, suffix: '+ years', label: 'EXPERIENCE' },
-  { count: 1000, suffix: '+', label: 'HANDLING CROWD' },
+const GENRES = [
+  { name: 'PROGRESSIVE', icon: '◈' },
+  { name: 'MELODIC TECHNO', icon: '◈' },
+  { name: 'AFRO HOUSE', icon: '◈' },
+  { name: 'EDM', icon: '◈' },
+  { name: 'HOUSE', icon: '◈' },
 ]
 
-function useCountUp(target: number, duration: number = 2000, shouldStart: boolean) {
-  const [count, setCount] = useState(0)
 
-  useEffect(() => {
-    if (!shouldStart) return
-    let startTime: number | null = null
-    let animFrame: number
-
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3) // ease-out cubic
-      setCount(Math.floor(eased * target))
-      if (progress < 1) {
-        animFrame = requestAnimationFrame(step)
-      } else {
-        setCount(target)
-      }
-    }
-
-    animFrame = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(animFrame)
-  }, [target, duration, shouldStart])
-
-  return count
-}
-
-function StatCard({ stat, index, isInView }: { stat: StatItem; index: number; isInView: boolean }) {
-  const count = useCountUp(stat.count, 2000, isInView)
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
-      transition={{ duration: 0.6, delay: index * 0.2, type: 'spring', stiffness: 90 }}
-      whileHover={{ y: -8, scale: 1.03 }}
-      className="relative flex flex-col items-center justify-center text-center p-10 cursor-pointer group"
-      style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,107,0,0.15)',
-        backdropFilter: 'blur(10px)',
-        transition: 'all 0.3s ease',
-      }}
-    >
-      {/* Hover glow */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(ellipse at 50% 50%, rgba(255,107,0,0.08), transparent 70%)`,
-        }}
-      />
-
-      {/* Count — large number */}
-      <div
-        className="font-black leading-none mb-3 relative z-10"
-        style={{
-          fontFamily: 'Orbitron, monospace',
-          fontSize: 'clamp(3rem, 6vw, 4.5rem)',
-          color: '#FF6B00',
-          textShadow: '0 0 30px rgba(255,107,0,0.4)',
-        }}
-      >
-        {count}
-        <span style={{ color: '#FF6B00', fontSize: '0.4em', marginLeft: '4px' }}>{stat.suffix}</span>
-      </div>
-
-      {/* Label */}
-      <div
-        className="text-sm md:text-base tracking-[4px] uppercase font-bold relative z-10"
-        style={{ fontFamily: 'Share Tech Mono, monospace', color: 'rgba(255,255,255,0.8)' }}
-      >
-        {stat.label}
-      </div>
-
-      {/* Bottom accent line */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{ background: `linear-gradient(90deg, transparent, #FF6B00, transparent)` }}
-      />
-    </motion.div>
-  )
-}
 
 export default function SocialCountSection() {
   const ref = useRef(null)
@@ -138,7 +53,7 @@ export default function SocialCountSection() {
             className="text-xs tracking-[8px] uppercase mb-4 block"
             style={{ color: '#FF6B00', fontFamily: 'Share Tech Mono, monospace' }}
           >
-            — TRACK RECORD —
+            — SOUND IDENTITY —
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, scale: 0.85 }}
@@ -155,10 +70,59 @@ export default function SocialCountSection() {
           </motion.h2>
         </div>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-          {STATS.map((stat, i) => (
-            <StatCard key={stat.label} stat={stat} index={i} isInView={isInView} />
+        {/* Genres grid */}
+        <div className="flex flex-wrap justify-center gap-5 md:gap-8 max-w-5xl mx-auto">
+          {GENRES.map((genre, i) => (
+            <motion.div
+              key={genre.name}
+              initial={{ opacity: 0, y: 40, scale: 0.85 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.85 }}
+              transition={{ duration: 0.6, delay: i * 0.12, type: 'spring', stiffness: 90 }}
+              whileHover={{ y: -8, scale: 1.06 }}
+              className="relative flex flex-col items-center justify-center text-center px-10 py-8 cursor-pointer group"
+              style={{
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,107,0,0.18)',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease',
+                minWidth: '180px',
+              }}
+            >
+              {/* Hover glow */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(ellipse at 50% 50%, rgba(255,107,0,0.1), transparent 70%)',
+                }}
+              />
+
+              {/* Icon */}
+              <div
+                className="text-3xl mb-4 relative z-10 group-hover:scale-125 transition-transform duration-300"
+                style={{ color: '#FF6B00', textShadow: '0 0 20px rgba(255,107,0,0.5)' }}
+              >
+                {genre.icon}
+              </div>
+
+              {/* Genre name */}
+              <div
+                className="font-black tracking-[3px] uppercase relative z-10"
+                style={{
+                  fontFamily: 'Orbitron, monospace',
+                  fontSize: 'clamp(0.75rem, 1.5vw, 1rem)',
+                  color: 'white',
+                  textShadow: '0 0 20px rgba(255,255,255,0.1)',
+                }}
+              >
+                {genre.name}
+              </div>
+
+              {/* Bottom accent line */}
+              <div
+                className="absolute bottom-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ background: 'linear-gradient(90deg, transparent, #FF6B00, transparent)' }}
+              />
+            </motion.div>
           ))}
         </div>
       </div>

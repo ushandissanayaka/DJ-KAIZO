@@ -13,7 +13,8 @@ const GALLERY_IMAGES = [
   { src: '/images/gallery/event6.jpg.placeholder.jpeg', label: 'Public Event', tag: 'EVENT' },
   { src: '/images/gallery/event7.jpg.placeholder.jpeg', label: 'Public Event', tag: 'EVENT' },
   { src: '/images/gallery/event8.jpg.placeholder.jpeg', label: 'Public Event', tag: 'EVENT' },
-  { src: '/images/gallery/event4.jpg.placeholder.jpeg', label: 'Public Event', tag: 'EVENT' },
+  { src: '/images/gallery/event9.jpg.placeholder.jpeg', label: 'Public Event', tag: 'EVENT' },
+  { src: '/images/gallery/event10.jpg.placeholder.jpeg', label: 'Public Event', tag: 'EVENT' },
 ]
 
 // Placeholder colors for demo
@@ -27,6 +28,8 @@ const PLACEHOLDER_COLORS = [
   'from-orange-900 to-gray-950',
   'from-gray-900 to-black',
   'from-black to-orange-900',
+  'from-orange-950 to-black',
+  'from-gray-950 to-orange-900',
 ]
 
 export default function GallerySection() {
