@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const DJ_NAME = 'DJ KAIZO'
+const DJ_NAME = 'KAIZO'
 
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -107,19 +107,32 @@ export default function HeroSection() {
             </h1>
           </motion.div>
 
-
-
-          {/* Skill badges */}
+          {/* Genre badges */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
             className="flex flex-wrap gap-2 mb-10"
           >
-            {['HOUSE', 'EDM', 'HIPHOP', 'BAILA', 'BOLLYWOOD', 'TOP 40'].map((tag, i) => (
-              <span key={tag} className="skill-tag" style={{ animationDelay: `${i * 0.1}s` }}>
-                {tag}
-              </span>
+            {['PROGRESSIVE', 'MELODIC TECHNO', 'AFRO HOUSE', 'EDM', 'HOUSE'].map((genre, i) => (
+              <motion.span
+                key={genre}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.9 + i * 0.08, type: 'spring', stiffness: 200 }}
+                style={{
+                  fontFamily: 'Share Tech Mono, monospace',
+                  fontSize: '0.65rem',
+                  letterSpacing: '3px',
+                  color: 'rgba(255,255,255,0.7)',
+                  border: '1px solid rgba(255,107,0,0.35)',
+                  background: 'rgba(255,107,0,0.06)',
+                  padding: '4px 12px',
+                  clipPath: 'polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%)',
+                }}
+              >
+                {genre}
+              </motion.span>
             ))}
           </motion.div>
 

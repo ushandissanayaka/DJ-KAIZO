@@ -3,14 +3,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const SKILLS_LIST = [
-  { name: 'Live Mixing', level: 98 },
-  { name: 'Crowd Reading', level: 95 },
-  { name: 'Sound Engineering', level: 90 },
-  { name: 'Music Production', level: 85 },
-  { name: 'Event Planning', level: 92 },
-  { name: 'Wedding Curation', level: 97 },
-]
 
 const HIGHLIGHTS = [
   { icon: '🎵', text: '100+ Events Performed' },
@@ -203,57 +195,7 @@ export default function AboutSection() {
             ))}
           </div>
 
-          {/* Skills bars */}
-          <div>
-            <h3
-              className="text-sm tracking-[6px] uppercase mb-5"
-              style={{ color: '#FF6B00', fontFamily: 'Share Tech Mono, monospace' }}
-            >
-              SKILL MATRIX
-            </h3>
-            <div className="space-y-3">
-              {SKILLS_LIST.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-                  transition={{ duration: 0.5, delay: 0.6 + i * 0.08, ease: 'easeOut' }}
-                >
-                  <div className="flex justify-between items-center mb-1">
-                    <span
-                      className="text-xs tracking-widest uppercase"
-                      style={{ fontFamily: 'Share Tech Mono, monospace', color: 'rgba(255,255,255,0.7)' }}
-                    >
-                      {skill.name}
-                    </span>
-                    <span
-                      className="text-xs"
-                      style={{ fontFamily: 'Share Tech Mono, monospace', color: '#FF6B00' }}
-                    >
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <div className="h-1 bg-white/10 relative">
-                    <motion.div
-                      className="h-full"
-                      style={{ background: 'linear-gradient(90deg, #FF6B00, #FF8C00)' }}
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                      transition={{ duration: 1, delay: 0.9 + i * 0.1, ease: 'easeOut' }}
-                    />
-                    {/* Glow tip */}
-                    <motion.div
-                      className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full"
-                      style={{ background: '#FF6B00', boxShadow: '0 0 8px #FF6B00' }}
-                      initial={{ left: 0 }}
-                      animate={isInView ? { left: `calc(${skill.level}% - 4px)` } : { left: 0 }}
-                      transition={{ duration: 1, delay: 0.9 + i * 0.1, ease: 'easeOut' }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+
         </motion.div>
       </div>
 
